@@ -356,6 +356,7 @@ class LibraryAdminPanel(ctk.CTk):
             try:
                 with db_connection() as conn:
                     cursor = conn.cursor()
+                    cursor.execute("DELETE FROM user_Collections WHERE user_id = %s", (member_id,))
                     cursor.execute("DELETE FROM reg_table WHERE id = %s", (member_id,))
                     conn.commit()
                     messagebox.showinfo("Success", "Member deleted successfully.")
